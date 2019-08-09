@@ -1,160 +1,126 @@
 ---
 layout: post
-title:  "Moon Jekyll Theme"
-date:   2016-04-06
-excerpt: "Minimal, one column Jekyll theme for your blog."
+title:  "Legal Text Classification"
+date:   2019-04
+excerpt: "TeejLab"
 project: true
 tag:
-- jekyll 
-- moon
-- blog
-- about
-- theme
+- Machine Learning
+- Data Science
+- NLP
+- CrowdSourcing
 comments: true
 ---
 
-![Moon Homepage](https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png)    
-    
-<center><b>Moon</b> is a minimal, one column jekyll theme.</center>
-     
- I'm not a developer or designer. And I don't add footer to show who did this theme. If you like this theme or using it, please give a **star** for motivation, It makes me happy.
+Executive Summary
+TeejLab is a SaaS platform that provide API service to software developers and legal team. The API Discovery tool helps users explore a variety of API services and its terms and conditions. Our task is to improve the accuracy and user experience of the API analyzers. Through problem identification, data acquisition, feature and model selection, evaluation and UI/UX redesign, we are able to improve the overall F1 score from 0.407 to 0.604 and enhance the user interface.
 
-<iframe src="https://ghbtns.com/github-btn.html?user=TaylanTatli&repo=Moon&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>    
-      
-## Installation
-* Fork the [Moon repo](https://github.com/TaylanTatli/Moon/fork)
-* Edit `_config.yml` file.
-* Remove sample posts from `_posts` folder and add yours.
-* Edit `index.md` file in `about` folder.
-* Change repo name to `YourUserName.github.io`    
-     
-That's all.
+Introduction
+The core value that the agreement analyzer brings to TeejLab customers is to capture, classify and highlight meaningful statements from lengthy legal documents. TeejLab previously used a linguistic rule-based approach for this task. Depending on modal keywords and negation appearance, sentences would be categorized into Permission, Prohibition, Obligation and Unidentified. The downside of this approach is that it is fragile and does not work if the text does not contain one of the few keywords in the list. Consequently, this approach missed many important legal liabilities and led to higher risk of terms and conditions violation. Some other problems identified with the previous analyze includes: (1) dual meaning sentence extractions; (2) unclear pronouns such as “it”; and (3) user experience improvement. Our goal was to develop a robust classification solution that classifies sentences into legal clauses (Permission, Prohibition and Obligation, Disclaimer) and identifies its addressed party (Customer, Vendor). 
+We were given 26 labelled sentences in a CSV file along with the source code of TeejLab’s previous rule-based model. Over the course of the following 5 weeks, we received 1,787 more labeled sentences by lawyers and industry professionals. 
+We confronted two major challenges at the start of the project. Firstly, insufficient labelled data restricted us from attempting any supervised learning techniques. Secondly, lack of an evaluation framework made it difficult to assess the performance of existing and new models. Therefore, we distilled the client’s needs into three scientific objectives.
 
-## Preview
+1.	Establish an evaluation framework that highlights recall and precision to tackle false negatives and false positives, respectively.
+2.	Improve the accuracy and robustness of the analyzer by developing a hybrid hierarchical model leveraging supervised learning and linguistic features.
+3.	Improve the user interface by identifying any new relevant categories and the user experience by modifying the highlighting rules.
 
-{% capture images %}
-	https://cloud.githubusercontent.com/assets/754514/14509716/61ac6c8e-01d6-11e6-879f-8308883de790.png
-	https://cloud.githubusercontent.com/assets/754514/14509717/61ad05ae-01d6-11e6-85ae-5a817dd8763b.png
-	https://cloud.githubusercontent.com/assets/754514/14509714/61a89708-01d6-11e6-8fcd-74b002a060df.png
-{% endcapture %}
-{% include gallery images=images caption="Screenshots of Moon Theme" cols=3 %}
 
----
 
-{% capture images %}
-	https://cloud.githubusercontent.com/assets/754514/14509718/61b09a20-01d6-11e6-8da1-4202ae4d83cd.png
-	https://cloud.githubusercontent.com/assets/754514/14509715/61aa9d00-01d6-11e6-81a6-c6837edf2e84.png
-{% endcapture %}
-{% include gallery images=images caption="Moon Theme on Small Screen Size" cols=2 %}      
-      
-See a [live version of Moon](http://taylantatli.github.io/Moon) hosted on GitHub.      
 
-## Site Setup
-A quick checklist of the files you’ll want to edit to get up and running.    
 
-### Site Wide Configuration
-`_config.yml` is your friend. Open it up and personalize it. Most variables are self explanatory but here's an explanation of each if needed:
 
-#### title
+Data Science Method
+After thorough experimentation with linguistic, supervised, and unsupervised models. We decided to ensemble a linguistic and supervised machine learning methodology that achieves the best performance.
 
-The title of your site... shocker!
+Crowdsourcing Data Annotation
+Lawyers annotated legal documents proved to be very time-consuming and costly. Alternatively, we utilized a crowdsourcing annotation platform, Figure Eight, to annotate 1,368 sentences. To ensure quality, we instituted controls such as minimum 70% correctness on test questions; minimum 70% agreement with dynamic judgement; and contributors restricted to English-speaking countries. The entire annotation task cost $231.81 (2₵ / judgment) and took around 20 hours to complete (Appendix I). Combined with lawyers-labelled data, our entire data set consisted of 2,999 labelled statements, which were split into 60% train, 20% validation and 20% test set.
 
-Example `title: My Awesome Site`
+Classification
+We primarily used the supervised learning for classification, as it showed significant improvement in recall score over other approaches, but overfitting was observed in some models even after hyperparameter tuning. Howeve the rule-based model performed better on the precision score and can be more intuitively interpreted. Lastly, unsupervised learning models did not perform well, and lack interpretability. (Appendix II)
 
-#### bio
+Components involved in constructing classification pipeline:
+1.	HTML Metadata Parser: We enhanced the online text parser by incorporating extraction of hidden HTML features into a dataframe. The intuition was that the metadata is informative of the sentence category. For instance, titles with fewer number of words and tagged as headers tended to be irrelevant (Appendix III, Figure 11). The final parser engineers 27 features related to the linguistic and web-based properties of the sentence. Technology used: BeautifulSoup, NLTK, spaCy
 
-The description to show on your homepage.
+2.	Model Selection: We tuned the hyperparameters using Randomized Search Cross Validation on various supervised learning models. These models were then evaluated with F-beta score, which weighted recall vs. precision differently depending on the model’s position in the classification pipeline. The model with the highest F-beta score was chosen. Technology used: scikit-learn
 
-#### description
+3.	Feature Engineering: A pipeline was constructed to identify the optimal vectorization method and the best features. Similar to model selection, the best sentence vectorizer was selected with the highest F-beta score. Then, features from the 27 metadata features were added via forward selection method. Technology used: scikit-learn, NLTK, spaCy
 
-The description to use for meta tags and navigation menu.
+4.	Pipeline: A hierarchical pipeline with different classifiers and features to optimize results is used to classify statements. This tackles two important issues, (1) imbalanced data resulting in rare occurring classes and (2) prioritizing precision and recall at different stages of classification.
+Data Product & Results
+The data science methodologies lead to the creation of this project’s data product that we will be delivering to TeejLab. This data product comprises of three parts:
+1.	Model tuning script
+2.	Hybrid classification pipeline
+3.	User experience
 
-#### url
+Model-tuning Script:
+The model-tuning script is an end-to-end script that allows TeejLab to retrain the supervised learning classification models if or when more training data is available. In the process of building these models, we have trained and evaluated the performance of the models on terms & conditions and privacy documents from a wide variety or organizations. But the fact of the matter is that regulation and innovation in APIs could present unseen types of document which would require the solution to be continually retrained on up-to-date labelled data.
 
-Used to generate absolute urls in `sitemap.xml`, `feed.xml`, and for generating canonical URLs in `<head>`. When developing locally either comment this out or use something like `http://localhost:4000` so all assets load properly. *Don't include a trailing `/`*.
+Hybrid Classification pipeline:
+The hybrid classification pipeline is, based on our research, the optimal classification methodology to accurately classify relevant sentences into meaningful categories. It mimics a waterfall in the manner in which it classifies sentences into the appropriate categories.
 
-Examples:
+Figure 1: Hybrid Classification Pipeline
 
-{% highlight yaml %}
-url: http://taylantatli.me/Moon
-url: http://localhost:4000
-url: //cooldude.github.io
-url:
-{% endhighlight %}
+The rationale behind this model is as follows:
+1.	Relevant vs. Irrelevant: These groups of sentences tend to differ from one another significantly based on the vocabulary, metadata and meaning. Hence, they are easily distinguishable. In terms of the evaluation at this stage, a F-Beta score calculated with higher weightage on Recall of relevant sentences to reduce False Negatives.
+2.	Prohibition and Non-Prohibition: The presence of negation in a sentence is easily distinguishable resulting in high accuracy in this classification. The evaluation metric at this stage emphasizes precision.
+3.	Obligation, Permission and Disclaimer: The remaining term types are classified at this stage since the vocabulary of these sentences tends to be very similar. The emphasis is again on precision to ensure the statements are labeled correctly.
+4.	Rule-based adjustment: The previous agreement analyzer’s strength in precisely labeling statements was a major advantage and we decided to incorporate that into our classification methodology by relabeling the more obvious statements into the correct term types.
+5.	Party classification: Lastly, the party is predicted for permission, prohibition and obligation statements. A combination and precision and recall, F1-score, are used to evaluate this model.
 
-#### reading_time
+Evaluation
+Table 1. Model Accuracy Comparison
+Approach
+Precision
+Recall
+F1-score
+Baseline Rule
+0.461
+0.494
+0.407
+Enhanced Supervised
+0.639
+0.614
+0.608
+Enhanced Hybrid
+0.657
+0.639
+0.640
+The test is on Google API Terms and Service.  The precision, recall, and F1-score are the overall result of the documents. The performances on each term-type are further broken down.
 
-Set true to show reading time for posts. And set `words_per_minute`, default is 200.
+Figure 2: Model Accuracy Comparison by Term Type
+Speed
+There were some concerns on the scraping time used from TeejLab’s side as there is no database stores the documents. Hybrid model uses less time than the linguistic model but needs more time for the classification as four models need to be implemented sequentially.
+Table 2. Model Speed Comparison
+Step / time (s)
+Linguistic Rule-based
+Enhance Hybrid
+Scrap, preprocess
+0.59
+0.29
+Classification
+1.66
+2.61
 
-#### logo
-Your site's logo. It will show on homepage and navigation menu. Also used for twitter meta tags.
+User Experience
+The advent of disclaimer category, as stated in the footnote, required modifying the user interface. We introduce a separate section at the bottom to list this category since it doesn’t directly align with either Vendor or User. Additionally, as a result of increasing recall, our analyzer is able to extract more sentences for each category. Specifying a fixed height for each section with a scrollbar would allow the content to appear on one screen. Using a scrollbar enables us to control the length of the content and provide a better user experience, but on the other hand, the user has to scroll through a long list of statements. To tackle this challenge, we have improved the highlighting of important segments of the statements. The entity mentioned in the sentences, extracted through named-entity recognition, is bolded and the key verb is underlined. The rationale behind this highlighting is that it facilitates easy skimming of numerous statements based on entities of interest.
 
-#### background
-Image for background. If you don't set it, color will be used as a background.
 
-#### Google Analytics and Webmaster Tools
+Figure 3: TeejLab’s previous user interface on GitLab Privacy Policy
 
-Google Analytics UA and Webmaster Tool verification tags can be entered in `_config.yml`. For more information on obtaining these meta tags check [Google Webmaster Tools](http://support.google.com/webmasters/bin/answer.py?hl=en&answer=35179) and [Bing Webmaster Tools](https://ssl.bing.com/webmaster/configure/verify/ownership) support.
 
-#### MathJax
-It's enabled. But if you don't want to use it. Set it false in  `_config.yml`.
 
-#### Disqus Comments
-Set your disqus shortname in `_config.yml` to use comments.
+Figure 4: TeejLab’s current user interface on GitLab Privacy Policy
 
----
 
-### Navigation Links
 
-To set what links appear in the top navigation edit `_data/navigation.yml`. Use the following format to set the URL and title for as many links as you'd like. *External links will open in a new window.*
 
-{% highlight yaml %}
-- title: Home
-  url: /
 
-- title: Blog
-  url: /blog/
+Figure 5: New Highlight Rules
 
-- title: Projects
-  url: /projects/
-
-- title: About
-  url: /about/
-
-- title: Moon
-  url: http://taylantatli.me/Moon
-{% endhighlight %}
-
----
-
-## Layouts and Content
-
-Moon Theme use [Jekyll Compress](https://github.com/penibelst/jekyll-compress-html) to compress html output. But it can cause errors if you use "linenos" (line numbers). I suggest don't use line numbers for codes, because it won't look good with this theme, also i didn't give a proper style for them. If you insist to use line numbers, just remove `layout: compress` string from layouts. It will disable compressing.
-
-### Feature Image
-
-You can set feature image per post. Just add `feature: some link` to your post's front matter.
-
-```
-feature: /assets/img/some-image.png
-or
-feaure: http://example.com/some-image.png
-```    
- This also will be used for twitter card:
-
-![Moon Twitter Card](https://cloud.githubusercontent.com/assets/754514/14509719/61c5751c-01d6-11e6-8c29-ce8ccad149bf.png)
-
-### Comments
-To show disqus comments for your post add `comments: true` to your post's front matter.
-
----
-
-## Questions?
-
-Found a bug or aren't quite sure how something works? By all means [file a GitHub Issue](https://github.com/TaylanTatli/Moon/issues/new). And if you make something cool with this theme feel free to let me know.
-
----
-
-## License
-
-This theme is free and open source software, distributed under the MIT License. So feel free to use this Jekyll theme on your site without linking back to me or including a disclaimer.
+Recommendations
+1.	Use BERT in future experiments: Our results only improved marginally when using BERT, but this state-of-the-art technique could potentially be more effective with a larger volume of labelled data. In addition, it has higher requirements on the training time and computational resources.
+2.	Adopt crowdsourcing techniques for data annotation: The advantages of crowdsourcing include affordability and speed. However, a common risk is the quality compromise, we suggest additional test questions and stricter quality controls.
+3.	Use F-beta score for evaluation: We chose F-beta score for its customizable weighted harmonic mean of precision and recall. This evaluation metric allows us to optimize on recall for the relevant class, while focusing on precision on the relevant subclasses.
+4.	Collect users’ feedback to further improve the product and the UI/UX design: Due to the lack of user analytics, we are unable to incorporate feedback into product design. We have proposed a couple of design ideas but a more effective way to make such decisions would be to conduct A/B testing.
+5.	Although the hybrid model achieved better performance in our research, we cannot be confident that it is significantly better from the pure supervised learning pipeline. Performing statistical tests on model performance is recommended in further research.
+In conclusion, we are confident that our hierarchical classification pipeline improved the robustness and accuracy by addressed the problem of misclassification. Additionally, our improvements to the user interface and experience will allow users to consume relevant statements more efficiently.

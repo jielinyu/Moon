@@ -1,112 +1,24 @@
 ---
 layout: post
-title:  "Markdown Syntax"
-date:   2016-03-15
-excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
+title:  "Kabam Challenge"
+date:   2019-06
+excerpt: ""
 tag:
-- markdown 
-- syntax
-- sample
-- test
-- jekyll
+- Machine Learning
+- Data Science
 comments: true
 ---
 
-## HTML Elements
+In this challenge, the objective is to construct a model that predicts the probability of a user spending money in the game. I treated this problem as a binary classification on whether the user will spend or not. Then, I inferred the probabilities by the classification of the user groups given the features of a user’s gaming profile.
 
-Below is just about everything you'll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.
+Three separate data files were given. I first joined these three tables by the unique user ID. Then, I converted the continuous variable - total_spending- to a binary variable that equals to 1 when the purchase is greater than 0, and equal to 0 otherwise. The binary variable ‘whether_spend’ was my responding variable. Since this target variable was indicated by the variable ‘total_spend’, I dropped the feature ‘total_spend’ to avoid confounding effects.
 
-# Heading 1
+Next, I checked the proportion of these two classes, the proportion of users who had spent money was around 1.14% while 98.86% of users did not spend money. Therefore, this was an imbalanced data set. This was concerning because, in an imbalanced dataset, it may falsely give high accuracies by always blindly predicting the majority class. Thus, accuracy should not be used as a measure of performance as I was interested in being able to predict the minority class. Therefore, I chose to use recall and f-1 score as the evaluation metric here as recall would emphasize on correctly identifying the money-spending users, while f-1 score would present a more general measure of recall and precision.
 
-## Heading 2
+Next, I counted missing values existing in each feature. Almost half of the observations in the features ‘game_stats_tutorial_complete’ and ‘game_stats_tutorial_complete_time’ were missing. Instead of removing or imputing these missing values, I dropped these two features because there was no intuitive way to replace these missing values. Moreover, there were features about experience points and redeemer actions that had a significant number of missing values. Since all of their distribution was right-skewed, I imputed the missing values with their median. For other features with small number of missing values, I remove the observations as it did not affect the data significantly
 
-### Heading 3
+Since the ultimate goal was to predict the probability, I compared four classifiers which had the ‘predict_proba’ feature, which are Random Forest, Logistic Regression, K-nearest Neighbors, and LightGBM. This feature could output the probability that the classification predicted by the model. I standardize all numerical variables and I label encoded multiple categorical columns.
 
-#### Heading 4
+Next, I split the data into training, validation, and testing data set with a proportion as 6:2:2 using stratified sampling method to ensure that each set has approximately the same proportion of the binary classes as the complete data set.
 
-##### Heading 5
-
-###### Heading 6
-
-### Body text
-
-Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
-
-![Smithsonian Image](https://mmistakes.github.io/minimal-mistakes/images/3953273590_704e3899d5_m.jpg)
-{: .image-right}
-
-*This is emphasized*. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
-
-HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.
-
-### Blockquotes
-
-> Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.
-
-## List Types
-
-### Ordered Lists
-
-1. Item one
-   1. sub item one
-   2. sub item two
-   3. sub item three
-2. Item two
-
-### Unordered Lists
-
-* Item one
-* Item two
-* Item three
-
-## Tables
-
-| Header1 | Header2 | Header3 |
-|:--------|:-------:|--------:|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|----
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|=====
-| Foot1   | Foot2   | Foot3
-{: rules="groups"}
-
-## Code Snippets
-
-{% highlight css %}
-#container {
-  float: left;
-  margin: 0 -240px 0 0;
-  width: 100%;
-}
-{% endhighlight %}
-
-## Buttons
-
-Make any link standout more when applying the `.btn` class.
-
-{% highlight html %}
-<a href="#" class="btn btn-success">Success Button</a>
-{% endhighlight %}
-
-<div markdown="0"><a href="#" class="btn">Primary Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-success">Success Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-warning">Warning Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-danger">Danger Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-info">Info Button</a></div>
-
-## KBD
-
-You can also use `<kbd>` tag for keyboard buttons.
-
-{% highlight html %}
-<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
-{% endhighlight %}
-
-Press <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move your car. **Midtown Maddness!!**
-
-## Notices
-
-**Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
-{: .notice}
+The LightGBM classifier performed the best as both its recall score (0.028) and F-1 score (0.053) was the highest.  Next, I used Randomized Search Cross Validation to tune the hyperparameters of LightGBM classifier. The tuning was customized such that it maximized recall. In comparison to the untuned classifier, the tuned LightGBM classifier performed better on test data.
