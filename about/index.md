@@ -5,33 +5,14 @@ tags: [about, Jekyll, theme, moon]
 date: 2016-03-21
 comments: false
 ---
-    
-<center><a href="http://taylantatli.github.io/Moon"><b>Moon</b></a> is a minimal, one column jekyll theme.</center>
 
-## Features
-* Minimal, you can focus on your content
-* Responsive
-* Disqus integration
-* Syntax highlighting
-* Optional post image
-* Social icons
-* Page for sharing projects
-* Optional background image
-* Simple navigation menu
-* MathJax support
+## My Background
+Hi, I am Jessie, a recent graduate from Master of Data Science program at University of British Columbia. I major in Financial Mathematics and minor in statistics during my undergraduate in UCLA. Now, I am actively looking for data scientist/data analyst/machine learning engineer in Vancouver.
 
-## Preview
+I am passion about using machine learning techniques to draw meaningful insights from large scale dataset. I am energetic, ready to take workplace challenges, enthusiastic, dedicated to work, keen to learn new things. I have experience in Machine Learning, Natural Language Processing, Data Collection, Data Cleansing, Data Analysis, Feature Engineering and Predictive Modelling to solve complex and challenging business problems. I appreciate the advancement in the field of data science and how it is changing the traditional way of doing business for the good.
 
-{% capture images %}
-    https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png
-    https://cloud.githubusercontent.com/assets/754514/14509716/61ac6c8e-01d6-11e6-879f-8308883de790.png
-{% endcapture %}
-{% include gallery images=images caption="Screenshots of Moon Theme" cols=2 %}
-
-See a [live version of Moon](http://taylantatli.github.io/Moon) hosted on GitHub.
-
-## Getting Started
-
-To learn how to install and use this theme check out the [Setup Guide](http://taylantatli.me/Moon/moon-theme/) for more information.
-      
-[Install Moon](https://github.com/TaylanTatli/Moon){: .btn}
+## Skillset
+Programming: Python(Pandas, Scikit-learn, Tensorflow, Keras), R, SQL, Spark, Hadoop
+Statistics: Data Wrangling, Distributions, Statistical Modeling, Regression, A/B testing, Bayesian Inference
+Machine Learning: Boosting, Random Forest, CNN, RNN, GAN, SVM, Computer Vision, NLP
+Visualization: Python (matplotlib, seaborn, plotly dash), R (ggplot, shiny), Tableau Software & Tools: AWS (EC2, S3, EMR), Linux Command Line, Version Control (Git), Jupyter Notebook, Rstudio, Docker
