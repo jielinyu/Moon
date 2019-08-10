@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Girls in Tech"
-date: 2019-04
+date: 2019-04-03
 excerpt: ""
 tags: posts
 comments: true
