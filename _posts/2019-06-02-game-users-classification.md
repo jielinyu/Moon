@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Kabam Challenge"
-date:   2019-06
+date:   2019-06-02
 excerpt: ""
 tag:
 - Machine Learning

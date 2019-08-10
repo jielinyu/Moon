@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Legal Text Classification"
-date:   2019-04
+date:   2019-06-08
 excerpt: "TeejLab"
 project: true
 tag:
