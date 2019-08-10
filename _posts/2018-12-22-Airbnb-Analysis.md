@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Airbnb in Amsterdam"
-date:   2018-12
+date:   2018-12-22
 excerpt: ""
 tag:
 - Data analysis
