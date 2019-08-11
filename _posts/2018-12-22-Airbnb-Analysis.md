@@ -3,7 +3,7 @@ layout: post
 title:  "Airbnb in Amsterdam"
 date:   2018-12-22
 excerpt: ""
-feaure: http://example.com/some-image.png
+feature: http://example.com/some-image.png
 tag:
 - Data analysis
 - Data Visualization
