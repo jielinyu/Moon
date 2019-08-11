@@ -3,7 +3,7 @@ layout: post
 title:  "Airbnb in Amsterdam"
 date:   2018-12-22
 excerpt: ""
-feature: http://example.com/some-image.png
+feature: https://media.wired.com/photos/5926c14ef3e2356fd800a56a/master/pass/airbnb_horizontal_lockup_white_print.jpg
 tag:
 - Data analysis
 - Data Visualization

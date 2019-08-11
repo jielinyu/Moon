@@ -3,6 +3,7 @@ layout: post
 title:  "Kabam Challenge"
 date:   2019-06-02
 excerpt: ""
+feature: https://media.licdn.com/dms/image/C560BAQF_bIjmex_qFQ/company-logo_200_200/0?e=2159024400&v=beta&t=6yhP3lzY2Hmf5n5shPPJgmt5dN7XWRAT-cRlkuRR63U
 tag:
 - Machine Learning
 - Data Science
