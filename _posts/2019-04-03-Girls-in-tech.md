@@ -3,7 +3,10 @@ layout: post
 title: "Girls in Tech"
 date: 2019-04-03
 excerpt: ""
-tags: posts
+tags:
+- Girls in Tech
+- R shiny
+- Data Visualization
 comments: true
 ---
 

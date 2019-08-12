@@ -3,7 +3,6 @@ layout: post
 title:  "Legal Text Classification"
 date:   2019-06-08
 excerpt: "TeejLab"
-project: true
 feature: https://pbs.twimg.com/profile_images/1059987338225283072/0BTH3JBi.jpg
 tag:
 - Machine Learning
