@@ -9,6 +9,7 @@ tag:
 - Data Science
 comments: true
 ---
+## ![Presentation](https://docs.google.com/presentation/d/1zrBBpXi_k79XopsfD2BIsnSTYmGdVBasNpyMvok8VZU/edit#slide=id.p)
 
 In this challenge, the objective is to construct a model that predicts the probability of a user spending money in the game. I treated this problem as a binary classification on whether the user will spend or not. Then, I inferred the probabilities by the classification of the user groups given the features of a user’s gaming profile.
 

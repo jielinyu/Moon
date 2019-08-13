@@ -69,54 +69,39 @@ The rationale behind this model is as follows:
 5.	Party classification: Lastly, the party is predicted for permission, prohibition and obligation statements. A combination and precision and recall, F1-score, are used to evaluate this model.
 
 Evaluation
-Table 1. Model Accuracy Comparison
-Approach
-Precision
-Recall
-F1-score
-Baseline Rule
-0.461
-0.494
-0.407
-Enhanced Supervised
-0.639
-0.614
-0.608
-Enhanced Hybrid
-0.657
-0.639
-0.640
+Table 1.
+| Approach            | Precision | Recall | F1-Score |
+|---------------------|-----------|--------|----------|
+| Baseline Rule       | 0.461     | 0.494  | 0.407    |
+| Enhanced Supervised | 0.639     | 0.614  | 0.608    |
+| Enhanced Hybrid     | 0.657     | 0.639  | 0.640    |
 The test is on Google API Terms and Service.  The precision, recall, and F1-score are the overall result of the documents. The performances on each term-type are further broken down.
 
 Figure 2: Model Accuracy Comparison by Term Type
+![Figure 2](../assets/img/F_score.png)
 Speed
 There were some concerns on the scraping time used from TeejLab’s side as there is no database stores the documents. Hybrid model uses less time than the linguistic model but needs more time for the classification as four models need to be implemented sequentially.
 Table 2. Model Speed Comparison
-Step / time (s)
-Linguistic Rule-based
-Enhance Hybrid
-Scrap, preprocess
-0.59
-0.29
-Classification
-1.66
-2.61
-
+| Step/time(s)      | Linguistic Rule-based | Enhance Hybrid |
+|-------------------|-----------------------|----------------|
+| Scrap, preprocess | 0.59                  | 0.29           |
+| Classification    | 1.66                  | 2.61           |
 User Experience
 The advent of disclaimer category, as stated in the footnote, required modifying the user interface. We introduce a separate section at the bottom to list this category since it doesn’t directly align with either Vendor or User. Additionally, as a result of increasing recall, our analyzer is able to extract more sentences for each category. Specifying a fixed height for each section with a scrollbar would allow the content to appear on one screen. Using a scrollbar enables us to control the length of the content and provide a better user experience, but on the other hand, the user has to scroll through a long list of statements. To tackle this challenge, we have improved the highlighting of important segments of the statements. The entity mentioned in the sentences, extracted through named-entity recognition, is bolded and the key verb is underlined. The rationale behind this highlighting is that it facilitates easy skimming of numerous statements based on entities of interest.
 
 
 Figure 3: TeejLab’s previous user interface on GitLab Privacy Policy
-
+![Figure 3](../assets/img/Picture3.png)
 
 
 Figure 4: TeejLab’s current user interface on GitLab Privacy Policy
-
+![Figure 4](../assets/img/Picture4.png)
 
 
 
 
 Figure 5: New Highlight Rules
+![Figure 5](../assets/img/Picture5.png)
 
 Recommendations
 1.	Use BERT in future experiments: Our results only improved marginally when using BERT, but this state-of-the-art technique could potentially be more effective with a larger volume of labelled data. In addition, it has higher requirements on the training time and computational resources.

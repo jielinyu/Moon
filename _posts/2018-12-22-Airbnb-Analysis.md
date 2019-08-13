@@ -12,6 +12,7 @@ comments: true
 
 Airbnb in Amsterdam!
 --------------------
+![GitHub](https://github.com/UBC-MDS/522_Airbnb_Listings_Amsterdam)
 
 Airbnb renting has always been interesting. Some spots can be rented in higher prices, whereas other spots can only be rented in very low prices. Suppose you would like to be a host in Amsterdam - in order to be a successful host, it is a good idea to investigate the host listing data from airbnb and see what are the major predictors of the room prices. In this project, we are going to do this job for those who want to be a successful host! Therefore, in our project, a question that is reasonable to ask is: What are the two strongest predictors of price for airbnb listings in Amsterdam? We are going to analyse the host listing data in Amsterdam and find out the answer!
 
