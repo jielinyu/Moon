@@ -1,7 +1,8 @@
 ---
 layout: page
 title: Professional Working Experience
-tags: [about, Jekyll, theme, moon]
+tags:
+- Data Science
 date: 2019-05-23
 comments: false
 ---
