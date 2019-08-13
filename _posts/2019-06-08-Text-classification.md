@@ -59,6 +59,7 @@ Hybrid Classification pipeline:
 The hybrid classification pipeline is, based on our research, the optimal classification methodology to accurately classify relevant sentences into meaningful categories. It mimics a waterfall in the manner in which it classifies sentences into the appropriate categories.
 
 Figure 1: Hybrid Classification Pipeline
+![Figure 1](../assets/img/classification_pipeline.png)
 
 The rationale behind this model is as follows:
 1.	Relevant vs. Irrelevant: These groups of sentences tend to differ from one another significantly based on the vocabulary, metadata and meaning. Hence, they are easily distinguishable. In terms of the evaluation at this stage, a F-Beta score calculated with higher weightage on Recall of relevant sentences to reduce False Negatives.
