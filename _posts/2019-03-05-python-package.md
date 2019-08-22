@@ -8,6 +8,8 @@ tags:
 comments: true
 ---
 
+[Github Repo](https://github.com/jielinyu/BeautyPy)
+
 Nearly everyone has some experience with Image processing, which is around our daily life. For example, when we use iPhone's camera to take pictures, it allows us to choose a filter which can add some special effects on these pictures. While using these filters, people might have wondered how these special effects are realized.
 
 We developed this package that performs digital image processing on .JPG images. People can use it to transform images into new images with some special effects, such as embossing, to compress images to reduce file sizes, and to calculate the exact number of bytes an image has. We hope to advance and add more functions later on.  
@@ -61,12 +63,6 @@ This function returns attributes of the input image, such as dimension, width, h
 pip install git+https://github.com/UBC-MDS/BeautyPy
 ```
 
-
-I came here searching for an answer. Some awesome suggestions here. And gold information pointing out that markdown supports HTMl completely!
-
-A good clean solution is always to go with pure html syntax for sure. With the tag.
-
-But I was trying to still stick to the markdown syntax so I tried wrapping it around a tag and added whatever attributes i wanted for the image inside the div tag. And it WORKS!!
 
 ![](img/install.jpg)
 

@@ -126,31 +126,31 @@ In this section, we are going to explore if each feature affects the price by vi
 
 The first one we are going to look at is the relationship between number of reviews of a listing and its price.
 
-![Figure 1: Price vs Number of Reviews](../results/exploratory-amsterdam_price-reviews.png) Figure 1: Relationship between the Number of Reviews per Listing and Price.
+![Figure 1: Price vs Number of Reviews](../assets/img/pic1.png) Figure 1: Relationship between the Number of Reviews per Listing and Price.
 
 Based on our experience, AirBnb reviews are unbalanced toward positive appraisals. Negative reviews are actually not that common, maybe because after a few negative reviews, no one else will rent that place. Therefore, we would think that a higher number of reviews would make the listing more reliable, allowing the host to charge a higher price for that. However, lower priced places can had more guests in the past, so they may have higher reviews either. From the graph above, there is a negative trend between price and number of reviews. Therefore, it can be predictor of the price, but we are not sure if it will be a strong one.
 
 The second one we are going to look at is the relationship between minimum nights the host requires for a listing and its price.
 
-![Figure 2: Price vs Minimum number of nights](../results/exploratory-amsterdam_price-minNights.png) Figure 2: Relationship between Minimum number of nights host requires and price.
+![Figure 2: Price vs Minimum number of nights](../assets/img/pic2.png) Figure 2: Relationship between Minimum number of nights host requires and price.
 
 From this graph , listings of median price level are having more required minimum nights than others, which is weird because we cannot see a clear pattern on it. Therefore, from this graph, we cannot be sure whether the minimum number of nights is a predictor of the price.
 
 The third one we are going to look at is the relationship between the room type of a listing and its price.
 
-![Figure 3: Price vs Room Type](../results/exploratory-amsterdam_price-roomType.png) Figure 3: Comparision of the maximum, minimum, 25% percentile, median, and 75% percentile of prices for different room types.
+![Figure 3: Price vs Room Type](../assets/img/pic3.png) Figure 3: Comparision of the maximum, minimum, 25% percentile, median, and 75% percentile of prices for different room types.
 
 From this graph, we can see the counts of shared room are always high regardless of the price level. When we look at private room, there are more listings of high level price than other price. However, for the entire home/apt, low price level has most counts. From the graph, it is hard to see some corelation between the room type and the price.
 
 The fourth one we are going to look at is the relationship between the number of listings that listing host has and the price of that listing.
 
-![Figure 4: Price vs Number of listings per host](../results/exploratory-amsterdam_price-listingsCount.png) Figure 4: Relationship between the number of listings the host has and the price
+![Figure 4: Price vs Number of listings per host](../assets/img/pic4.png) Figure 4: Relationship between the number of listings the host has and the price
 
 From the graph, we can see there is a weak and unproportional corelation, but there is no strong correlation between the number of listings and the price. Although there are more highly priced listings when the number of listings a host has is small, that could be because there are more listings that have the host having low number of listings.
 
 The last one we are going to look at is the relationship between the number of availability per 365 days of a listing and the its price.
 
-![Figure 5: Price vs Availability per 365 days](../results/exploratory-amsterdam_price-availability.png) Figure 5: Relationship between the number of availability per 365 days and the price
+![Figure 5: Price vs Availability per 365 days](../assets/img/pic5.png) Figure 5: Relationship between the number of availability per 365 days and the price
 
 From the graph, we can see that there is a week positive correlation between the availability per 365 days and the price, however we are not sure if it is a strong predictor or not.
 
@@ -167,7 +167,7 @@ First, in order to get the higher accuracy, we decide to test the accuracy on th
 
 Next, we use the training data again for fitting the model that has the hyperparameter of `max_depth=4`. After fitting the model, we are going to use this model and our testing data to predict the outputs. This is the decision tree we get:
 
-![Figure 7: Decision Tree](../results/tree_graph.png) Figure 7: The decision tree we made for analyzing the strong predictors of the price
+![Figure 7: Decision Tree](../assets/img/pic6.png) Figure 7: The decision tree we made for analyzing the strong predictors of the price
 
 After getting the decision tree and outputs from the model, we are going to alculate the accuracy of the outputs by comparing the outputs with the actual outputs we already had in the testing data. The accuracy we came out is *0.482*, which is not high. This could be because all features we analyzed are not really strong predictors of price, which is actually in accordance with the findings in our data visualization.
 
